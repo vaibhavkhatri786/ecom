@@ -1,0 +1,35 @@
+<%= form_with model: @address, local: true do |f| %>
+  <div class="field">
+    <%= f.label :line1 %><br />
+    <%= f.text_field :line1, autofocus: true, autocomplete: "line1" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :line2 %><br />
+    <%= f.text_field :line2, autofocus: true, autocomplete: "line2" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :landmark %><br />
+    <%= f.text_field :landmark, autofocus: true, autocomplete: "landmark" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :city %><br />
+    <%= f.text_field :city, autofocus: true, autocomplete: "city" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :pincode %><br />
+    <%= f.text_field :pincode, autofocus: true, autocomplete: "pincode" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :state %><br />
+    <%= f.text_field :state, autofocus: true, autocomplete: "state" %>
+  </div><br>
+
+  <div class="actions">
+    <%= f.submit "Save" %>
+  </div>
+<% end %>

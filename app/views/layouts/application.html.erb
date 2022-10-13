@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Ecom</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+  </head>
+
+  <style>   
+    .image-inline li {
+      display: inline;
+      white-space: nowrap;
+    }
+  </style>
+
+  <body>
+    <%= render partial: 'layouts/header' %>
+    <% if notice.present? %>
+      <p class="notice alert alert-success"><%= notice %></p>
+    <% elsif alert.present? %>
+      <p class="alert alert-warning"><%= alert %></p>
+    <% end %>
+    <div class="container">
+      <%= yield %>
+    </div>
+  </body>
+</html>

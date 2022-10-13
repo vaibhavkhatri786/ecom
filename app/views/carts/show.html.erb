@@ -1,0 +1,42 @@
+<div class="container">
+	<br><br>
+	<% if @cart.cart_items.empty? %>
+		<h3 class="text-center">Cart is empty !!</h3>
+		<div class="text-center"><small><%= link_to 'Continue shoping...', root_path %></small></div>
+	<% else %>
+	<div class="row">
+		<div class="col-md-10">
+			<% @cart.cart_items.each do |cart_item|%>
+				<div class="row">
+					<div class="col-md-2">
+            <% if cart_item.product.pictures.attached? %>
+              <%= image_tag(cart_item.product.pictures.first,style: 'width: 140px; height: 160px;') %>
+            <% end %>
+					</div>
+					<div class="col-md-10">
+						<h6><%= cart_item.product.name %></h6><br>
+						<div>Description: <%= cart_item.product.description %></div>
+						<small><%= link_to 'Details..', home_path(cart_item.product) %></small>
+						<br><br>
+						Price: <b><%= cart_item.product.price %>/-</b><br>
+            
+						<%= link_to '-', decreament_item_carts_path(id: cart_item.id), method: :put, class: 'btn btn-primary' %>
+						<%= cart_item.quantity %>
+						<%= link_to '+', increament_item_carts_path(id: cart_item.id), method: :put, class: 'btn btn-primary' %>	
+						<%= link_to 'Remove', destroy_item_carts_path(id: cart_item.id), method: :delete, class: 'btn btn-primary' %>
+					</div>
+				</div>
+				<br><br>
+				<br> 
+			<% end %>
+		</div>
+		<div class="col-md-2">
+			<% @cart.cart_items.each do |cart_item|%>
+				<p><small>Pro: <%= cart_item.product.name %>, Q: <%= cart_item.quantity %></small></p>
+			<% end %>
+			<strong>Sub Total Price : <%= @cart.total_price %></strong><br><br>
+			<%= button_to 'Proceed to checkout', @addresses.present? ? addresses_path : new_address_path, method: :get, class: "btn btn-warning btn-rounded" %>
+		</div>
+	</div>
+	<% end %>
+</div>

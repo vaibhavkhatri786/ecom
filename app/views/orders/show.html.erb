@@ -1,0 +1,23 @@
+<h1>Products</h1>
+<% @order.order_items.each do |order_item| %>
+  <p>
+    <strong>Name:</strong>
+    <%= order_item.product.name %>
+  </p>
+  <p>
+    <strong>Price:</strong>
+    <%= order_item.product.price %>
+  </p>
+  <p>
+    <strong>Quantity:</strong>
+    <%= order_item.quantity %>
+  </p>
+  <h1>-------------------------------------------</h1>
+<% end %>
+<!--
+<h1>Address</h1>
+<%= @order.address.line1 %>, <%= @order.address.line2 %> <%= @order.address.landmark %>, <%= @order.address.city %>, <%= @order.address.state %>, <%= @order.address.pin_code %>
+<h4>Sub Total: <%= @order.total_price%></h4>
+<h1>Expected Delivery </h1>
+<%= @order.created_at + 7.days %>
+-->

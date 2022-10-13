@@ -1,0 +1,43 @@
+<!--
+<h1>Home Index</h1> 
+<table>
+  <tr>
+    <th>Product</th>
+    <th>Description</th>
+    <th>Price</th>
+  </tr>
+ 
+  <% @products.each do |product| %>
+    <tr>
+      <td><%= product.name %></td>
+      <td><%= product.description %></td>
+      <td><%= product.price %></td>
+      <td><%= link_to 'Show', home_path(product) %></td>
+      <td><%= link_to 'Add to cart', add_item_to_cart_carts_path(:product_id => product.id), method: :post %></td>
+      </tr>
+  <% end %>
+</table>
+-->
+
+<div class="row">
+  <% @products.each_slice(4) do |products| %>
+    <div class="row" style="margin-top: 20px;">
+      <% products.each do |product| %>
+        <div class="col-md-3">
+          <div class="card" style="width: 18rem;">
+            <% if product.pictures.attached? %>
+              <%= image_tag(product.pictures.first, class: 'card-img-top',style: 'width: 200px; height: 200px;') %>
+            <% end %>
+            <div class="card-body">
+              <h5 class="card-title"><%= product.name %></h5>
+              <h6 class="card-title">Price <%= product.price %></h6>
+              <p class="card-text"><%= product.description.truncate(50) %></p>
+              <%= link_to 'Add to cart', add_item_to_cart_carts_path(:product_id => product.id), method: :post, class: "btn btn-info" %>
+            </div>                                                                                              
+          </div>
+        </div>
+        <br>
+      <% end %>
+    </div>
+  <% end %>
+</div>
